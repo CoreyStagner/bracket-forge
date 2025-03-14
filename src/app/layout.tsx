@@ -3,9 +3,11 @@
 // import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import React, { useState, 
-  // useRef, 
-  useEffect } from "react";
+import React, {
+  useState,
+  // useRef,
+  useEffect,
+} from "react";
 import { Howl } from "howler";
 
 const geistSans = Geist({
@@ -42,16 +44,28 @@ export default function RootLayout({}: Readonly<{
   const [playedWarnTone, setPlayedWarnTone] = useState(false);
 
   // Audio Files and constructors
-  const startAudio = React.useMemo(() => new Howl({
-    src: ["./audio/mixkit-attention-bell-ding-586.wav"],
-  }), []);
-  const warnAudio = React.useMemo(() => new Howl({
-    src: ["./audio/mixkit-airport-announcement-ding-1569.wav"],
-  }), []);
-  const stopAudio = React.useMemo(() => new Howl({
-    src: ["./audio/mixkit-melodic-game-over-956.wav"],
-  }), []);
-  
+  const startAudio = React.useMemo(
+    () =>
+      new Howl({
+        src: ["./audio/mixkit-attention-bell-ding-586.wav"],
+      }),
+    []
+  );
+  const warnAudio = React.useMemo(
+    () =>
+      new Howl({
+        src: ["./audio/mixkit-airport-announcement-ding-1569.wav"],
+      }),
+    []
+  );
+  const stopAudio = React.useMemo(
+    () =>
+      new Howl({
+        src: ["./audio/mixkit-melodic-game-over-956.wav"],
+      }),
+    []
+  );
+
   /**
    * Convert the seconds into a readable minute:second format.
    * @param timer {number} Seconds that the timer is set for.
@@ -88,18 +102,21 @@ export default function RootLayout({}: Readonly<{
     setIsTimerRunning(false);
     setTimerLength(prevTimerLength);
   };
-  
-  const handleStartingTimer = React.useCallback((isStart: boolean) => {
-    if (isStart) {
-      setIsTimerRunning(true);
-      setPlayedWarnTone(false);
-      startAudio.play();
-    } else {
-      setIsTimerRunning(false);
-      setPlayedWarnTone(false);
-      stopAudio.play();
-    }
-  }, [startAudio, stopAudio]);
+
+  const handleStartingTimer = React.useCallback(
+    (isStart: boolean) => {
+      if (isStart) {
+        setIsTimerRunning(true);
+        setPlayedWarnTone(false);
+        startAudio.play();
+      } else {
+        setIsTimerRunning(false);
+        setPlayedWarnTone(false);
+        stopAudio.play();
+      }
+    },
+    [startAudio, stopAudio]
+  );
 
   // handle the timer decrementing
   useEffect(() => {
@@ -125,7 +142,14 @@ export default function RootLayout({}: Readonly<{
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [isTimerRunning, timerLength, warningLength, playedWarnTone, handleStartingTimer, warnAudio]);
+  }, [
+    isTimerRunning,
+    timerLength,
+    warningLength,
+    playedWarnTone,
+    handleStartingTimer,
+    warnAudio,
+  ]);
 
   // Table Logic TODO:
   // interface iTable {
@@ -146,28 +170,28 @@ export default function RootLayout({}: Readonly<{
   // }, []); // Empty dependency array since this should only run once
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <main>
-          <div className="timer-container">
-            <h1>Bracket Forge</h1>
-            {/* Timer Display component TODO: Move to own component */}
-            <div
-              className="timer--display"
-              style={{
-                backgroundColor: isTimerRunning
-                  ? isWarning
-                    ? "yellow"
-                    : "green"
-                  : "red",
-              }}
-            >
-              {getTimerString(timerLength)}
-            </div>
+    <>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <main>
+            <div className="timer-container">
+              <h1>Bracket Forge</h1>
+              {/* Timer Display component TODO: Move to own component */}
+              <div
+                className="timer--display"
+                style={{
+                  backgroundColor: isTimerRunning
+                    ? isWarning
+                      ? "yellow"
+                      : "green"
+                    : "red",
+                }}
+              >
+                {getTimerString(timerLength)}
+              </div>
 
-            {/* This is the control for if the game or tournament is not have an admin running */}
-            {/* {!hasAdmin && (*/}
-              <>
+              {/* This is the control for if the game or tournament is not have an admin running */}
+              <div>
                 <h2>Timer Control</h2>
                 <div className="timer_controls--container">
                   {/* TODO: Convert to component */}
@@ -210,16 +234,16 @@ export default function RootLayout({}: Readonly<{
                     </button>
                   </div>
                 </div>
-              </>
-            {/* )}*/}
-            {/* <h2>Tables:</h2>
+              </div>
+              {/* <h2>Tables:</h2>
             {tableList.map((table, i) => (
               <div key={`table_container-${i}`}>{table.name}</div>
             )
             )} */}
-          </div>
-        </main>
-      </body>
-    </html>
+            </div>
+          </main>
+        </body>
+      </html>
+    </>
   );
 }
