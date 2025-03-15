@@ -110,5 +110,25 @@ a {
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  padding: 0px 180px;
+  padding: 0px 30px;
+}
+
+@media (min-width: 768px) {
+  .timer_controls--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0px 90px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .timer_controls--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0px 180px;
+  }
 }
