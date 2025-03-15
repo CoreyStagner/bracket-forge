@@ -1,18 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { handleSignOut } from "../lib/auth/signOutServerAction";
+// import { useRouter } from "next/navigation";
+// import { handleSignOut } from "../lib/auth/signOutServerAction";
 
 export const SignOutButton = (props: {
   className?: string;
   children?: React.ReactNode;
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <button
       className={props.className}
       style={{ cursor: "pointer" }}
-      onClick={() => handleSignOut()}
+      // onClick={() => handleSignOut()}
     >
       {props.children || "Sign Out"}
     </button>
