@@ -75,9 +75,18 @@ a {
 }
 
 .timer--display {
-  font-size: 2rem;
+  font-size: 10rem;
   text-align: center;
-  width: 50%;
+  width: 70%;
   margin: auto;
   font-family: monospace;
+  margin-bottom: 10rem;
+}
+
+.timer_controls--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0px 180px;
 }

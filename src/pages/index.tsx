@@ -1,7 +1,5 @@
-"use client";
-
 // import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import React, {
   useState,
@@ -10,15 +8,15 @@ import React, {
 } from "react";
 import { Howl } from "howler";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -171,79 +169,71 @@ export default function RootLayout({}: Readonly<{
 
   return (
     <>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <main>
-            <div className="timer-container">
-              <h1>Bracket Forge</h1>
-              {/* Timer Display component TODO: Move to own component */}
-              <div
-                className="timer--display"
-                style={{
-                  backgroundColor: isTimerRunning
-                    ? isWarning
-                      ? "yellow"
-                      : "green"
-                    : "red",
-                }}
-              >
-                {getTimerString(timerLength)}
-              </div>
+      <main>
+        <div className="timer-container">
+          <h1>Bracket Forge</h1>
+          {/* Timer Display component TODO: Move to own component */}
+          <div
+            className="timer--display"
+            style={{
+              backgroundColor: isTimerRunning
+                ? isWarning
+                  ? "yellow"
+                  : "green"
+                : "red",
+            }}
+          >
+            {getTimerString(timerLength)}
+          </div>
 
-              {/* This is the control for if the game or tournament is not have an admin running */}
-              <div>
-                <h2>Timer Control</h2>
-                <div className="timer_controls--container">
-                  {/* TODO: Convert to component */}
-                  Timer Length:{" "}
-                  <input
-                    type="number"
-                    name="timerLength"
-                    onChange={(v) =>
-                      handleSettingTimer(parseInt(v.target.value))
-                    }
-                  />
-                  Warning Time:{" "}
-                  <input
-                    type="number"
-                    name="warningTime"
-                    onChange={(v) =>
-                      handleSettingWarning(parseInt(v.target.value))
-                    }
-                  />
-                  {/* TODO: Add dropdown to handle if it is seconds, minutes, or hours */}
-                  {/* TODO: Convert to component */}
-                  <div className="timer_controls-buttons--container">
-                    <button
-                      className="btn-primary btn-success"
-                      onClick={() => handleStartingTimer(true)}
-                    >
-                      Start Timer
-                    </button>
-                    <button
-                      className="btn-primary btn-danger"
-                      onClick={() => setIsTimerRunning(false)}
-                    >
-                      Stop Timer
-                    </button>
-                    <button
-                      className="btn-primary btn-success"
-                      onClick={() => handleTimerReset()}
-                    >
-                      Reset Timer
-                    </button>
-                  </div>
-                </div>
+          {/* This is the control for if the game or tournament is not have an admin running */}
+          <div>
+            <h2>Timer Control</h2>
+            <div className="timer_controls--container">
+              {/* TODO: Convert to component */}
+              Timer Length:{" "}
+              <input
+                type="number"
+                name="timerLength"
+                onChange={(v) => handleSettingTimer(parseInt(v.target.value))}
+              />
+              Warning Time:{" "}
+              <input
+                type="number"
+                name="warningTime"
+                onChange={(v) => handleSettingWarning(parseInt(v.target.value))}
+              />
+              {/* TODO: Add dropdown to handle if it is seconds, minutes, or hours */}
+              {/* TODO: Convert to component */}
+              <div className="timer_controls-buttons--container">
+                <button
+                  className="btn-primary btn-success"
+                  onClick={() => handleStartingTimer(true)}
+                >
+                  Start Timer
+                </button>
+                <button
+                  className="btn-primary btn-danger"
+                  onClick={() => setIsTimerRunning(false)}
+                >
+                  Stop Timer
+                </button>
+                <button
+                  className="btn-primary btn-success"
+                  onClick={() => handleTimerReset()}
+                >
+                  Reset Timer
+                </button>
               </div>
-              {/* <h2>Tables:</h2>
+            </div>
+          </div>
+          {/* <h2>Tables:</h2>
             {tableList.map((table, i) => (
               <div key={`table_container-${i}`}>{table.name}</div>
             )
             )} */}
-            </div>
-          </main>
-        </body>
-      </html>
+        </div>
+      </main>
     </>
   );
 }
