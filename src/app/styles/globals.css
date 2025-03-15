@@ -75,12 +75,34 @@ a {
 }
 
 .timer--display {
-  font-size: 10rem;
+  font-size: 3rem;
   text-align: center;
   width: 70%;
   margin: auto;
   font-family: monospace;
   margin-bottom: 10rem;
+}
+
+@media (min-width: 769px) {
+  .timer--display {
+    font-size: 6rem;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-family: monospace;
+    margin-bottom: 10rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .timer--display {
+    font-size: 10rem;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-family: monospace;
+    margin-bottom: 10rem;
+  }
 }
 
 .timer_controls--container {
